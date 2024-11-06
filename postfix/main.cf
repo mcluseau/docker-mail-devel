@@ -1,0 +1,23 @@
+smtpd_banner = $myhostname ESMTP $mail_name (devel)
+
+biff = no
+append_dot_mydomain = no
+readme_directory = no
+compatibility_level=3.6
+
+smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
+myhostname = localhost
+mydestination = localhost
+relayhost=
+mynetworks = 127.0.0.0/8 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 [::1]/128 [fd00::]/8
+mailbox_size_limit = 0
+recipient_delimiter = +
+inet_interfaces = all
+inet_protocols = all
+
+maillog_file = /dev/stdout
+
+mailbox_transport = lmtp:unix:private/dovecot-lmtp
+virtual_transport = lmtp:unix:private/dovecot-lmtp
+
+virtual_alias_maps = regexp:/etc/postfix/virtual_regexp
